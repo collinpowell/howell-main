@@ -1,0 +1,73 @@
+version: "3"
+
+services:
+  howelldnode0:
+    container_name: howelldnode0
+    image: "howelld/node"
+    ports:
+      - "26657:26657"
+      - "8545:8545"
+      - "8546:8546"
+      - "8125:8125"
+    environment:
+      - ID=0
+      - LOG=${LOG:-howelld.log}
+    volumes:
+      - ./localnet-setup/node0/howelld:/ethermint:Z
+    networks:
+      - localnet
+    entrypoint: "bash start-docker.sh"
+
+  howelldnode1:
+    container_name: howelldnode1
+    image: "howelld/node"
+    ports:
+      - "26658:26657"
+      - "8555:8545"
+      - "8556:8546"
+      - "8126:8125"
+    environment:
+      - ID=1
+      - LOG=${LOG:-howelld.log}
+    volumes:
+      - ./localnet-setup/node1/howelld:/ethermint:Z
+    networks:
+      - localnet
+    entrypoint: "bash start-docker.sh"
+
+  howelldnode2:
+    container_name: howelldnode2
+    image: "howelld/node"
+    environment:
+      - ID=2
+      - LOG=${LOG:-howelld.log}
+    ports:
+      - "26659:26657"
+      - "8565:8545"
+      - "8566:8546"
+      - "8127:8125"
+    volumes:
+      - ./localnet-setup/node2/howelld:/ethermint:Z
+    networks:
+      - localnet
+    entrypoint: "bash start-docker.sh"
+
+  howelldnode3:
+    container_name: howelldnode3
+    image: "howelld/node"
+    environment:
+      - ID=3
+      - LOG=${LOG:-howelld.log}
+    ports:
+      - "26660:26657"
+      - "8575:8545"
+      - "8576:8546"
+      - "8128:8125"
+    volumes:
+      - ./localnet-setup/node3/howelld:/ethermint:Z
+    networks:
+      - localnet
+    entrypoint: "bash start-docker.sh"
+
+networks:
+  localnet:
